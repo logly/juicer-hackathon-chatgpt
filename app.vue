@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-200">
-    <div class="flex h-12 items-center bg-main py-2 px-4 text-white">
+    <div class="bg-main flex h-12 items-center py-2 px-4 text-white">
       <div>Juicer</div>
     </div>
     <div class="container mx-auto max-w-4xl">
@@ -9,14 +9,11 @@
       </div>
       <div class="my-5 min-h-[20rem] bg-white px-4 py-3">
         <div class="flex h-20 w-full items-center justify-center bg-gray-200 px-5 py-3">
-          <input class="w-full rounded-full px-5 py-2" placeholder="URL を入力( 例: https://example.com )"/>
-          <button class="mx-5 w-20 rounded bg-gray-800 px-5 py-1 text-white">検索</button>
+          <input v-model="inputUrl" class="w-full rounded-full px-5 py-2" placeholder="URL を入力( 例: https://example.com )"/>
+          <button class="mx-5 w-20 rounded bg-gray-800 px-5 py-1 text-white" @click="onGpt">検索</button>
         </div>
-      <div class="my-6 min-h-[16rem] w-full bg-gray-200 px-5 py-3">
-        <ChatCard is-me text="テキスト"/>
-        <ChatCard text="テキスト"/>
-        <ChatCard is-me text="テキスト"/>
-        <ChatCard text="テキスト"/>
+        <div class="my-6 min-h-[16rem] w-full bg-gray-200 px-5 py-3">
+          <ChatCard v-for="(chat,index) in chatMessages" :key="index" :text="chat.text" :is-me="chat.isMe"/>
         </div>
       </div>
     </div>
@@ -25,5 +22,28 @@
 
 
 <script lang="ts" setup>
+
+type ChatType = {
+  isMe: boolean,
+  icon: string,
+  text: string,
+}
+
+const inputUrl = ref("");
+
+
+const onGpt = () => {
+  // ここで fetch するように実装
+  console.log(inputUrl.value);
+}
+
+const chatMessages = ref<ChatType[]>([
+  {isMe: true, icon: "", text: "これはテストです。" },
+  {isMe: false, icon: "",text: "ほげほげほげ"},
+  {isMe: true, icon: "", text: "これはテストです。" },
+  {isMe: false, icon: "",text: "ほげほげほげ"},
+])
+
+
 
 </script>
