@@ -13,7 +13,7 @@
           <button class="mx-5 w-20 rounded bg-gray-800 px-5 py-1 text-white" @click="onGpt">検索</button>
         </div>
         <div class="my-6 min-h-[16rem] w-full bg-gray-200 px-5 py-3">
-          <ChatCard v-for="(chat,index) in chatMessages" :key="index" :text="chat.text" :is-me="chat.isMe"/>
+          <ChatCard v-for="(chat,index) in chatMessages" :key="index" :text="chat.text" :is-me="chat.isMe" :is-loading="chat.isLoading"/>
         </div>
       </div>
     </div>
@@ -27,6 +27,7 @@ type ChatType = {
   isMe: boolean,
   icon: string,
   text: string,
+  isLoading?: boolean
 }
 
 const inputUrl = ref("");
@@ -41,7 +42,7 @@ const chatMessages = ref<ChatType[]>([
   {isMe: true, icon: "", text: "これはテストです。" },
   {isMe: false, icon: "",text: "ほげほげほげ"},
   {isMe: true, icon: "", text: "これはテストです。" },
-  {isMe: false, icon: "",text: "ほげほげほげ"},
+  {isMe: false, icon: "",text: "ほげほげほげ",isLoading: true},
 ])
 
 

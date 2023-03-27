@@ -2,7 +2,14 @@
   <div :class="['flex',isMe?'flex-row-reverse':'flex-row' ]">
   <img class="h-16 w-16 rounded-full" src="https://placehold.jp/150x150.png"/>
     <div :class="['relative','max-w-full','w-[480px]','balloon',isMe ? 'balloon-me':'balloon-opponent']">
-      <div :class="['px-4','py-3','min-h-[5rem]', 'text-white',isMe?'bg-main':'bg-green-500','w-full']">{{ text }}</div>
+      <div :class="['px-4','py-3','min-h-[5rem]', 'text-white',isMe?'bg-main':'bg-green-500','w-full']">
+        <div v-if="isLoading">
+          <svg class="animate-spin h-8 w-8 border-4 border-white rounded-full border-t-transparent" viewBox="0 0 24 24"></svg>
+        </div>
+        <span v-else>
+          {{ text }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +29,11 @@ defineProps({
     type: Boolean,
     required: false,
     default : false
+  },
+  isLoading: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 </script>
