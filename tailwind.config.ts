@@ -7,5 +7,8 @@ export default <Partial<Config>> {
         main: "#5a4775"
       }
     }
-  }
+  },
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ]
 }

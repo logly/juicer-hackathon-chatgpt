@@ -1,12 +1,12 @@
 <template>
   <div :class="['flex',isMe(type)?'flex-row-reverse':'flex-row' ]">
     <img class="h-16 w-16 rounded-full" src="https://placehold.jp/150x150.png"/>
-    <div :class="['relative','max-w-full','w-[480px]','balloon',isMe(type) ? 'balloon-me': isJuicer(type) ? 'balloon-juicer':'balloon-chatgpt']">
-      <div :class="['px-4','py-3','min-h-[5rem]', 'text-white',isMe(type) ? 'bg-gray-300': isJuicer(type)? 'bg-main' : 'bg-green-500','w-full']">
+    <div :class="['relative max-w-full w-[480px] balloon',isMe(type) ? 'balloon-me': isJuicer(type) ? 'balloon-juicer':'balloon-chatgpt']">
+      <div :class="['px-4 py-3 min-h-[5rem] text-white w-full',isMe(type) ? 'bg-gray-300': isJuicer(type)? 'bg-main' : 'bg-green-500',]">
         <div v-if="isLoading">
           <svg class="animate-spin h-8 w-8 border-4 border-white rounded-full border-t-transparent" viewBox="0 0 24 24"></svg>
         </div>
-        <span v-else>
+        <span class="line-clamp-3 hover:overflow-none hover:block transition-all duration-300 " v-else>
           {{ text }}
         </span>
       </div>
@@ -59,8 +59,7 @@ const isJuicer = (type: "me" | "juicer" | "chatgpt") => {
 .balloon:after {
   content: "";
   position: absolute;
-  top: 50%;
-  margin-top: -2rem;
+  top: 0.4rem;
   border: 14px solid transparent;
   z-index: 1;
 }
