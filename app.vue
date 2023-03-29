@@ -10,7 +10,7 @@
       <div class="my-5 min-h-[32rem] bg-white px-4 py-3">
         <div class="flex h-20 w-full items-center justify-center bg-gray-200 px-5 py-3">
           <input v-model="inputUrl" type="url" class="w-full rounded-full px-5 py-2" placeholder="URL を入力( 例: https://example.com )"/>
-          <button class="mx-5 w-20 rounded bg-gray-800 px-5 py-1 text-white" @click="onCategorizeUrl">検索</button>
+          <button class="mx-5 w-20 rounded bg-gray-700 px-5 py-1 text-white hover:bg-gray-900" @click="onCategorizeUrl">検索</button>
         </div>
         <div class="my-6 h-full min-h-[50rem] w-full bg-gray-200 px-5 py-3">
           <ChatCard v-for="(chat,index) in chatMessages" :key="index" :text="chat.text" :type="chat.type"/>
@@ -58,7 +58,7 @@ const onCategorizeUrl = async () => {
     ...chatMessages.value,
     {
       type: 'juicer', text: `
-        @chatgpt へ以下のデータを送ります。。
+        @chatgpt へ以下のデータを送ります。
 
       {
         title: ${getPageInfo.data.value?.title},

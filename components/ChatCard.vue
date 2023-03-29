@@ -1,12 +1,12 @@
 <template>
   <div :class="['flex',isMe(type)?'flex-row-reverse':'flex-row' ]">
-    <img class="h-16 w-16 rounded-full" src="https://placehold.jp/150x150.png"/>
+    <img class="h-16 w-16 rounded-full" :src="isMe(type)?'/person.png':isJuicer(type)?'/osaru.png':'/chatgpt.png'"/>
     <div :class="['relative max-w-full w-[480px] balloon',isMe(type) ? 'balloon-me': isJuicer(type) ? 'balloon-juicer':'balloon-chatgpt']">
-      <div :class="['px-4 py-3 min-h-[5rem] text-white w-full',isMe(type) ? 'bg-gray-300': isJuicer(type)? 'bg-main' : 'bg-green-500',]">
+      <div :class="['px-4 py-3 min-h-[5rem] w-full',isMe(type) ? 'bg-gray-300': isJuicer(type)? 'text-white bg-main' : 'text-white bg-chatgpt',]">
         <div v-if="isLoading">
           <svg class="animate-spin h-8 w-8 border-4 border-white rounded-full border-t-transparent" viewBox="0 0 24 24"></svg>
         </div>
-        <span class="line-clamp-3 hover:overflow-none hover:block transition-all duration-300 " v-else>
+        <span class="line-clamp-3 hover:overflow-none hover:block transition-all duration-300" v-else>
           {{ text }}
         </span>
       </div>
@@ -86,12 +86,12 @@ const isJuicer = (type: "me" | "juicer" | "chatgpt") => {
 
 .balloon-chatgpt {
   margin: 0.8rem 0 1.5em 15px;
-  border: solid 3px #22C55E;
+  border: solid 3px #00A67E;
 }
 
 .balloon-chatgpt:after {
   left: -30px;
-  border-right: 14px solid #22C55E;
+  border-right: 14px solid #00A67E;
 }
 
 
